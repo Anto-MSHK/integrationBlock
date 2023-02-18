@@ -1,7 +1,7 @@
 import { h, Component, render } from "./lib/preact.js";
 import htm from "./lib/htm.js";
-import { Cube } from "./companents/cube/cube.js";
-import { Hint } from "./companents/hint/hint.js";
+import { Cube } from "./components/cube/cube.js";
+import { Hint } from "./components/hint/hint.js";
 import { pages, qube_main_namespace } from "./test.js";
 
 const html = htm.bind(h);
