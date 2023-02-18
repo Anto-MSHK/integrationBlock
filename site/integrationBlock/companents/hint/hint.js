@@ -8,7 +8,9 @@ export function Hint(props) {
     elem.classList.toggle("disactive");
   }
   const parent = document.getElementsByClassName(props.blockName)[0];
+  console.log(parent);
   let inputChld = parent.querySelector("input");
+  console.log(inputChld);
   inputChld.addEventListener("click", function () {
     onChange();
   });

@@ -2,25 +2,34 @@ import { h, Component, render } from "./lib/preact.js";
 import htm from "./lib/htm.js";
 import { Cube } from "./companents/cube/cube.js";
 import { Hint } from "./companents/hint/hint.js";
+import { pages, qube_main_namespace } from "./test.js";
+
 const html = htm.bind(h);
 
-const appDiv = document.getElementsByClassName("qube_assistent")[0];
+pages.map((page) => {
+  const curNamespace = document.getElementsByClassName(page.namespace)[0];
 
-const hintDiv = document.getElementsByClassName("qube_hint")[0];
-console.log(hintDiv);
-const rootDiv = document.createElement("div");
-appDiv.appendChild(rootDiv);
+  if (curNamespace) {
+    let mainDiv = document.getElementsByClassName(page.namespace)[0];
+    const cubeContainer = document.createElement("div");
+    mainDiv.appendChild(cubeContainer);
+    render(html`<${Cube} dots="${page.hints}" />`, cubeContainer);
 
-const rootHintDiv = document.createElement("div");
-hintDiv.appendChild(rootHintDiv);
-console.log(rootHintDiv);
-render(html`<${Cube} name="World" />`, rootDiv);
-
-render(
-  html`<${Hint} title="Подсказка" description="Lorem Ipsum - это текст-"рыба",
-  часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной
-  "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный
-  печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem
-  Ipsum для распечатки образцов." blockName="qube_hint"/>`,
-  hintDiv
-);
+    qube_main_namespace.map((el) => {
+      const full_name = page.namespace + "_" + el.name_elem;
+      let curDiv = document.getElementsByClassName(full_name)[0];
+      const rootDiv = document.createElement("div");
+      curDiv.appendChild(rootDiv);
+      render(
+        html`<${Hint}
+          title="${el.title}"
+          description="${el.description}"
+          blockName="${full_name}"
+        />`,
+        rootDiv
+      );
+    });
+  } else {
+    return;
+  }
+});

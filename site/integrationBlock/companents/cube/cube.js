@@ -29,10 +29,7 @@ export function Cube(props) {
         <i class="fa fa-plus"></i>
       </div>
       <menu class="items-wrapper">
-        <${Dot} name="С чего начать?" />
-        <${Dot} name="Как создать проект?" />
-        <${Dot} name="Как подать заявку?" />
-        <${Dot} name="Другой вопрос" />
+        ${props.dots.map((dot) => html`<${Dot} name="${dot.title}" />`)}
       </menu>
     </div>
   </div>`;
