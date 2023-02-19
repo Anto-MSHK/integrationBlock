@@ -1,7 +1,6 @@
 .hint-main {
   position: absolute;
   right: 0;
-  top: 50px;
   background-color: rgb(242, 242, 242);
   color: black;
   padding: 0 10px;
@@ -10,11 +9,18 @@
   height: fit-content;
   padding: 10px;
   z-index: 2;
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  transform: translateY(20px);
+  line-height: normal;
+  transition: 0.3s ease;
+  opacity: 1;
+  box-shadow: 3px 12px 50px 17px rgba(34, 60, 80, 0.3);
 }
 
 .hint-main.disactive {
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: 0.3s ease;
 }
 
 .hint-main .img {

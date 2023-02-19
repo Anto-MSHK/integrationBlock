@@ -8,8 +8,9 @@ export function Hint(props) {
     elem.classList.toggle("disactive");
   }
   const parent = document.getElementsByClassName(props.blockName)[0];
+  console.log(props.blockName);
   console.log(parent);
-  let inputChld = parent.querySelector("input");
+  let inputChld = parent.querySelector(`${!props.notEvent ? "input" : "div"}`);
   console.log(inputChld);
   inputChld.addEventListener("click", function () {
     onChange();
@@ -18,7 +19,7 @@ export function Hint(props) {
     onChange();
   });
 
-  return html`<div class="hint-main disactive">
+  return html`<div class="hint-main ${props.disabled ? "disactive" : ""}">
     <div>
       <div style="display: flex; justify-content: space-between; width: 100%">
         <h1>${props.title}</h1>
